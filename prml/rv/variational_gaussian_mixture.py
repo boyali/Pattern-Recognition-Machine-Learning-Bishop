@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.misc import logsumexp
+from scipy.special import logsumexp
 from scipy.special import digamma, gamma
 from prml.rv.rv import RandomVariable
 
@@ -38,10 +38,12 @@ class VariationalGaussianMixture(RandomVariable):
     def _init_params(self, X):
         sample_size, self.ndim = X.shape
         self.alpha0 = np.ones(self.n_components) * self.alpha0
+
         if self.m0 is None:
             self.m0 = np.mean(X, axis=0)
         else:
             self.m0 = np.zeros(self.ndim) + self.m0
+
         self.W0 = np.eye(self.ndim) * self.W0
         if self.dof0 is None:
             self.dof0 = self.ndim
