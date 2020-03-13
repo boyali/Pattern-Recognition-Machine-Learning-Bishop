@@ -26,6 +26,7 @@ class VariationalGaussianMixture(RandomVariable):
         """
         super().__init__()
         self.n_components = n_components
+
         if alpha0 is None:
             self.alpha0 = 1 / n_components
         else:
